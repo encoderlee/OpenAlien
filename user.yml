@@ -3,7 +3,7 @@
 # wax节点地址，使用公共节点，有时候会网络不通，或者访问太频繁被限制，出现429错误，可以换节点，或者搭建私有节点
 # 公共节点列表：https://wax.eosio.online/endpoints
 
-rpc_domain: https://wax.eosphere.io
+rpc_domain: https://wax.greymass.com
 
 # cpu代付号,cpu_key填写该代付号私钥，不需要代付则留空
 cpu_account:
