@@ -3,7 +3,7 @@
 # wax节点地址，使用公共节点，有时候会网络不通，或者访问太频繁被限制，出现429错误，可以换节点，或者搭建私有节点
 # 公共节点列表：https://wax.eosio.online/endpoints
 
-rpc_domain: https://wax.pink.gg
+rpc_domain: https://wax.eosphere.io
 
 # cpu代付号,cpu_key填写该代付号私钥，不需要代付则留空
 cpu_account:
@@ -27,5 +27,5 @@ proxy_password:
 # charge_time是采矿间隔，单位秒，登录alienworlds官网，打开工具页面，就可以看到，按实际情况填写
 
 account: gts3c.c.wam
-token: EHuyFHPcLpSNUJ4BLSUnPxxxxxxxxxxxx
+token: EHuyFHPcLpSNUJ4BLSUnPkxxxxxxxxxxxxxxxx
 charge_time: 336

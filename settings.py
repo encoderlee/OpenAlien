@@ -5,8 +5,10 @@ from dacite import from_dict, Config
 
 class interval:
     req: int = 2
-    transact: int = 5
-
+    net_error: int = 5
+    transact: int = 20
+    cpu_insufficient: int = 60
+    max_trx_error: int = 5
 
 @dataclass
 class UserParam:

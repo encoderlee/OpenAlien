@@ -80,29 +80,34 @@ class Alien:
             self.http.proxies = proxies
             self.eosapi.session.proxies = proxies
 
-        retry = tenacity.retry(retry = retry_if_not_exception_type(StopException),
-                               wait=wait_fixed(interval.transact), before_sleep=self.log_retry, reraise=False)
+        retry = tenacity.retry(retry = retry_if_not_exception_type(StopException), wait=self.wait_retry, reraise=False)
         self.mine = retry(self.mine)
         self.query_last_mine = retry(self.query_last_mine)
 
         self.charge_time: int = charge_time
         self.next_mine_time: datetime = None
 
-    def log_retry(self, state: RetryCallState):
-        exp = state.outcome.exception()
+        self.trx_error_count = 0
+
+    def wait_retry(self, retry_state: RetryCallState) -> float:
+        exp = retry_state.outcome.exception()
+        wait_seconds = interval.transact
         if isinstance(exp, RequestException):
             self.log.info("网络错误: {0}".format(exp))
-            self.log.info("正在重试: [{0}]".format(state.attempt_number))
-            return
-        if isinstance(exp, NodeException):
+            wait_seconds = interval.net_error
+        elif isinstance(exp, NodeException):
             self.log.info((str(exp)))
             self.log.info("节点错误,状态码【{0}】".format(exp.resp.status_code))
+            wait_seconds = interval.transact
         elif isinstance(exp, TransactionException):
+            self.trx_error_count += 1
             self.log.info("交易失败： {0}".format(exp.resp.text))
             if "is greater than the maximum billable" in exp.resp.text:
-                self.log.error("CPU资源不足，可能需要质押更多WAX，稍后重试 maximum")
-            elif "estimated CPU time (0 us) is not less than the maximum billable CPU time for the transaction (0 us)" in exp.resp.text:
-                self.log.error("CPU资源不足，可能需要质押更多WAX，稍后重试 estimated")
+                self.log.error("CPU资源不足，可能需要质押更多WAX，稍后重试 [{0}]".format(self.trx_error_count))
+                wait_seconds = interval.cpu_insufficient
+            elif "is not less than the maximum billable CPU time" in exp.resp.text:
+                self.log.error("交易被限制,可能被该节点拉黑 [{0}]".format(self.trx_error_count))
+                wait_seconds = interval.transact
             elif "NOTHING_TO_MINE" in exp.resp.text:
                 self.log.error("账号可能被封，请手动检查 ERR::NOTHING_TO_MINE")
                 raise StopException("账号可能被封")
@@ -111,7 +116,12 @@ class Alien:
                 self.log.info("常规错误: {0}".format(exp), exc_info=exp)
             else:
                 self.log.info("常规错误")
-        self.log.info("5秒后重试: [{0}]".format(state.attempt_number))
+        if self.trx_error_count >= interval.max_trx_error:
+            self.log.info("交易连续出错[{0}]次，为避免被节点拉黑，脚本停止，请手动检查问题或更换节点".format(self.trx_error_count))
+            raise StopException("交易连续出错")
+        self.log.info("{0}秒后重试: [{1}]".format(wait_seconds, retry_state.attempt_number))
+        return float(wait_seconds)
+
 
     def get_table_rows(self, table: str):
         post_data = {
@@ -184,6 +194,7 @@ class Alien:
         self.log.info("开始交易: {0}".format(trx))
         resp = self.eosapi.push_transaction(trx)
         self.log.info("交易成功, transaction_id: [{0}]".format(resp["transaction_id"]))
+        self.trx_error_count = 0
 
 
     def wax_sign(self, serialized_trx: str) -> List[str]:
