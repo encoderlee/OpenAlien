@@ -1,0 +1,5 @@
+requests
+cryptos
+tenacity
+dacite
+base58

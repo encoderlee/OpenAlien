@@ -1,5 +1,6 @@
 __pycache__
 .idea
-/*.bat
-/build
-/dist
+/*build
+/*dist
+/pack.bat
+/logs
