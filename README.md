@@ -99,6 +99,12 @@ charge_time: 336
 
 公共节点列表：[https://wax.eosio.online/endpoints](https://wax.eosio.online/endpoints)
 
+注意，从 Chrome 浏览器中复制出 token 后，浏览器可以点右上角叉叉关闭，但不要点退出登录该账号，也不要直接重新登录另外一个账号，不然之前的账号会掉线。
+
+如果需要在 Chrome 中登录第二个账号，请使用 Chrome 的多用户功能登录
+
+Chrome 多用户相关文章：[https://www.chensnotes.com/chrome-profile.html](https://www.chensnotes.com/chrome-profile.html)
+
 ### 常用工具
 
 【nodepad++】[https://notepad-plus-plus.org/downloads/v8.4.2](https://notepad-plus-plus.org/downloads/v8.4.2)
