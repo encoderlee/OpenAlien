@@ -26,7 +26,9 @@
 
 ### 使用方法一：
 
-直接在github页面右侧的【Releases】处下载最新的打包版本，只支持Win10或更高版本的操作系统。
+直接点下面链接下载最新版打包版本（或在github页面右侧的【Releases】里找），打包版本只支持Win10或更高版本的操作系统。
+
+[【点我下载】](https://github.com/encoderlee/OpenAlien/releases/download/1.0.0/OpenAlien_1.0.0.zip)
 
 把压缩包里的文件解压出来，先修改配置文件【user.yml】，再双击运行【user.bat】
 
@@ -93,6 +95,19 @@ charge_time: 336
 
 公共节点列表：[https://wax.eosio.online/endpoints](https://wax.eosio.online/endpoints)
 
+### 常用工具
+
+【nodepad++】[https://notepad-plus-plus.org/downloads/v8.4.2](https://notepad-plus-plus.org/downloads/v8.4.2)
+
+文本编辑器，编辑修改【user.yml】配置文件更愉快
+
+【cmder】[https://cmder.net](https://cmder.net)
+
+替代 windows 自带的 cmd 命令行工具，防止脚本假死
+
+系统自带的 cmd 命令行工具，默认开启快速编辑模式，有时候因为鼠标键盘意外操作，
+
+日志会留在一个地方，处于假死状态，导致脚本不能持续运行，换用【cmder】解决该问题
 ### 欢迎打赏
 
 wax钱包地址：
