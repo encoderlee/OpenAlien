@@ -1,2 +1,100 @@
 # OpenAlien
-一个免费开源的外星世界(Alien Worlds)自动化挂机合约脚本
+![version](https://img.shields.io/badge/version-1.0.0-blue)
+![license](https://img.shields.io/badge/license-MIT-brightgreen)
+![python_version](https://img.shields.io/badge/python-%3E%3D%203.6-brightgreen)
+![coverage](https://img.shields.io/badge/coverage-100%25-brightgreen)
+[![](https://img.shields.io/badge/blog-@encoderlee-red)](https://encoderlee.blog.csdn.net)
+### 一个免费开源的外星世界(Alien Worlds)自动化挂机合约脚本
+![](https://raw.githubusercontent.com/encoderlee/OpenAlien/main/doc/demo1.png)
+## 说明
+外星世界（Alien Worlds）官网： [https://alienworlds.io](https://alienworlds.io)
+
+之前我们推出过免费开源的农民世界（FarmersWorld）合约脚本:
+[https://github.com/encoderlee/OpenFarmer](https://github.com/encoderlee/OpenFarmer)
+
+本次推出外星世界（Alien Worlds）的合约脚本：
+[https://github.com/encoderlee/OpenAlien](https://github.com/encoderlee/OpenAlien)
+
+老用户都懂，无需多言
+
+和之前的 OpenFarmer 相比，本次开源的 OpenAlien 彻底脱离了Chrome浏览器运行 , 底层的 EOSIO SDK 由原来的 [【eospy】](https://github.com/eosnewyork/eospy) 换成了我们自己开发的 [【eosapi】](https://github.com/encoderlee/eosapi) ，
+提高了稳定性和单台电脑的多开数量
+
+### 欢迎加入QQ群讨论交流：858505473
+
+# 用法
+
+### 使用方法一：
+
+直接在github页面右侧的【Releases】处下载最新的打包版本，只支持Win10或更高版本的操作系统。
+
+把压缩包里的文件解压出来，先修改配置文件【user.yml】，再双击运行【user.bat】
+
+多开第二个账号，复制【user.yml】为【user2.yml】，复制【user.bat】为【user2.bat】
+
+修改配置文件【user2.yml】为第二个账户的信息，修改【user2.bat】文件，把里面的字符串“user.yml”改为“user2.yml”，然后双击运行【user2.bat】
+
+多开更多账号，以此类推
+
+### 使用方法二：
+
+1.从源码运行，先安装 Python 环境，推荐安装 Python 3.9.13 版本，因为这是我们测试过的版本
+
+下载地址：[https://www.python.org/ftp/python/3.9.13/python-3.9.13-amd64.exe](https://www.python.org/ftp/python/3.9.13/python-3.9.13-amd64.exe)
+
+安装时记得勾选“Add Python 3.9 to PATH”
+
+2.下载源码，在 github 项目页面上点击绿色按钮【Code】,【Download ZIP】,下载后解压出来
+
+3.双击运行【install_dependencies.bat】安装依赖包，这个步骤每台电脑只需做一次
+
+【注意】安装依赖包前请关闭梯子之类的代理，以免下载出错
+
+4.先修改配置文件【user.yml】，再双击运行【user.bat】
+
+5.多开方法和上面一样，就是复制这两个文件，修改后运行
+
+### 配置文件说明
+
+```yaml
+#注意，每个参数名的冒号后面，都有一个空格，修改参数不要丢了空格
+
+# wax节点地址，使用公共节点，有时候会网络不通，或者访问太频繁被限制，出现429错误，可以换节点，或者搭建私有节点
+# 公共节点列表：https://wax.eosio.online/endpoints
+
+rpc_domain: https://wax.pink.gg
+
+# cpu代付号,cpu_key填写该代付号私钥，不需要代付则留空
+cpu_account:
+cpu_key:
+
+# 即使可挖时间到了，也延迟30-90秒再挖
+delay1: 30
+delay2: 90
+
+# http代理（比如127.0.0.1:10808)
+# 给脚本设置HTTP代理，这样可以在一定程度上解决公共节点限制访问的问题，不需要则留空
+proxy:
+proxy_username:
+proxy_password:
+
+# wax云钱包账号
+# token是什么，先在chrome浏览器中手工登录WAX云钱包  https://wallet.wax.io/dashboard
+# 然后在chrome浏览器中输入地址导航到： https://all-access.wax.io/api/session
+# 把token复制出来填到下面
+# charge_time是采矿间隔，单位秒，登录alienworlds官网，打开工具页面，就可以看到，按实际情况填写
+
+account: gts3c.c.wam
+token: EHuyFHPcLpSNUJ4BLSUnPxxxxxxxxxxxx
+charge_time: 336
+
+```
+
+公共节点列表：[https://wax.eosio.online/endpoints](https://wax.eosio.online/endpoints)
+
+### 欢迎打赏
+
+wax钱包地址：
+
+m45yy.wam
+
