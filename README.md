@@ -28,6 +28,12 @@
 
 # 用法
 
+### 视频教程：
+
+[https://www.bilibili.com/video/BV1da4115757](https://www.bilibili.com/video/BV1da4115757)
+
+[https://www.youtube.com/watch?v=hZSl-2QyJys](https://www.youtube.com/watch?v=hZSl-2QyJys)
+
 ### 使用方法一：
 
 直接点下面链接下载最新版打包版本（或在github页面右侧的【Releases】里找），打包版本只支持Win10或更高版本的操作系统。
