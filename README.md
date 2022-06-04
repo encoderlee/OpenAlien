@@ -17,10 +17,14 @@
 
 老用户都懂，无需多言
 
-和之前的 OpenFarmer 相比，本次开源的 OpenAlien 彻底脱离了Chrome浏览器运行 , 底层的 EOSIO SDK 由原来的 [【eospy】](https://github.com/eosnewyork/eospy) 换成了我们自己开发的 [【eosapi】](https://github.com/encoderlee/eosapi) ，
+和之前的 OpenFarmer 相比，本次开源的 OpenAlien 彻底脱离了Chrome浏览器运行 
+
+底层的 EOSIO SDK 由原来的 [【eospy】](https://github.com/eosnewyork/eospy) 换成了我们自己开发的 [【eosapi】](https://github.com/encoderlee/eosapi) ，
 提高了稳定性和单台电脑的多开数量
 
-### 欢迎加入QQ群讨论交流：858505473
+欢迎关注我的博客：[https://encoderlee.blog.csdn.net](https://encoderlee.blog.csdn.net)
+
+### 欢迎加入我们的链游QQ群交流讨论：858505473
 
 # 用法
 
