@@ -1,5 +1,5 @@
 # OpenAlien
-![version](https://img.shields.io/badge/version-1.0.0-blue)
+![version](https://img.shields.io/badge/version-1.0.2-blue)
 ![license](https://img.shields.io/badge/license-MIT-brightgreen)
 ![python_version](https://img.shields.io/badge/python-%3E%3D%203.6-brightgreen)
 ![coverage](https://img.shields.io/badge/coverage-100%25-brightgreen)
@@ -32,7 +32,7 @@
 
 直接点下面链接下载最新版打包版本（或在github页面右侧的【Releases】里找），打包版本只支持Win10或更高版本的操作系统。
 
-[【点我下载】](https://github.com/encoderlee/OpenAlien/releases/download/1.0.0/OpenAlien_1.0.0.zip)
+[【点我下载】](https://github.com/encoderlee/OpenAlien/releases/download/1.0.2/OpenAlien_1.0.2.zip)
 
 把压缩包里的文件解压出来，先修改配置文件【user.yml】，再双击运行【user.bat】
 
