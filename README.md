@@ -78,7 +78,8 @@ proxy:
 proxy_username:
 proxy_password:
 
-# wax云钱包账号
+# 下面三项改为你的账号信息
+# account是wax云钱包账号名
 # token是什么，先在chrome浏览器中手工登录WAX云钱包  https://wallet.wax.io/dashboard
 # 然后在chrome浏览器中输入地址导航到： https://all-access.wax.io/api/session
 # 把token复制出来填到下面
