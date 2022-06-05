@@ -34,7 +34,7 @@ def start():
 
 def main():
     print(">>>>>>>>>>>>> OpenAlien 开源版:v1.0.2 <<<<<<<<<<<<")
-    print(">>>>>>>>>>>>> 交流QQ群:858505473 <<<<<<<<<<<<")
+    print(">>>>>>>>>>>>> 交流QQ群:568229631 <<<<<<<<<<<<")
     print(">>>>>>>>>>>>> 项目地址:https://github.com/encoderlee/OpenAlien <<<<<<<<<<<<\n")
     try:
         start()
