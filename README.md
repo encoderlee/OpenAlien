@@ -24,7 +24,7 @@
 
 欢迎关注我的博客：[https://encoderlee.blog.csdn.net](https://encoderlee.blog.csdn.net)
 
-### 欢迎加入我们的链游QQ群交流讨论：858505473
+### 欢迎加入我们的QQ群交流讨论：568229631
 
 # 用法
 
