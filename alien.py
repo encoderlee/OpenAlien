@@ -203,7 +203,7 @@ class Alien:
         post_data = {
             "serializedTransaction": serialized_trx,
             "description": "jwt is insecure",
-            "freeBandwidth": True,
+            "freeBandwidth": False,
             "website": "play.alienworlds.io",
         }
         headers = {"x-access-token": self.token}
