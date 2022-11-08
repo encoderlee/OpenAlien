@@ -1,6 +1,6 @@
 from datetime import datetime, timezone, timedelta
 import time
-from logger import log, _log
+import logger
 import logging
 import requests
 import functools
@@ -63,7 +63,7 @@ class Alien:
     def __init__(self, wax_account: str, token: str, charge_time: int, proxy: HttpProxy = None):
         self.wax_account: str = wax_account
         self.token: str = token
-        self.log: logging.LoggerAdapter = logging.LoggerAdapter(_log, {"tag": self.wax_account})
+        self.log: logging.LoggerAdapter = logger.get_loger(self.wax_account, self.wax_account)
         self.http = requests.Session()
         self.http.headers["User-Agent"] = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, " \
                                           "like Gecko) Chrome/101.0.4951.54 Safari/537.36 "

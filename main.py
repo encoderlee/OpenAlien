@@ -1,5 +1,4 @@
 import logger
-from logger import log
 import ruamel.yaml
 yaml = ruamel.yaml.YAML()
 from ruamel.yaml.comments import CommentedMap
@@ -19,6 +18,7 @@ def start():
     load_param(data)
 
     logger.init_loger(user_param.account)
+    log = logger.get_loger(user_param.account)
 
     proxy = None
     if user_param.proxy:
