@@ -8,7 +8,7 @@ class interval:
     net_error: int = 5
     transact: int = 20
     cpu_insufficient: int = 60
-    max_trx_error: int = 5
+    max_trx_error: int = 10
 
 @dataclass
 class UserParam:

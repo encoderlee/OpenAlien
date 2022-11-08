@@ -86,6 +86,7 @@ class Alien:
 
         self.charge_time: int = charge_time
         self.next_mine_time: datetime = None
+        self.check_cpu: bool = False
 
         self.trx_error_count = 0
 
@@ -105,6 +106,7 @@ class Alien:
             if "is greater than the maximum billable" in exp.resp.text:
                 self.log.error("CPU资源不足，可能需要质押更多WAX，稍后重试 [{0}]".format(self.trx_error_count))
                 wait_seconds = interval.cpu_insufficient
+                self.check_cpu = True
             elif "is not less than the maximum billable CPU time" in exp.resp.text:
                 self.log.error("交易被限制,可能被该节点拉黑 [{0}]".format(self.trx_error_count))
                 wait_seconds = interval.transact
@@ -141,6 +143,11 @@ class Alien:
 
     # 采矿
     def mine(self) -> bool:
+        if self.check_cpu:
+            if not self.check_cpu_net():
+                self.log.info("CPU/NET资源不足，暂时不采矿，60秒后再试")
+                self.next_mine_time = datetime.now() + timedelta(seconds = 60)
+                return False
         # 查询上次采矿的信息
         last_mine_time, last_mine_tx = self.query_last_mine()
 
@@ -195,6 +202,7 @@ class Alien:
         resp = self.eosapi.push_transaction(trx)
         self.log.info("交易成功, transaction_id: [{0}]".format(resp["transaction_id"]))
         self.trx_error_count = 0
+        self.check_cpu = False
 
 
     def wax_sign(self, serialized_trx: str) -> List[str]:
@@ -233,6 +241,27 @@ class Alien:
         last_mine_time = last_mine_time.replace(tzinfo=None)
         self.log.info("上次采矿时间: {0}".format(last_mine_time))
         return last_mine_time, resp["last_mine_tx"]
+
+
+    def check_cpu_net(self) -> bool:
+        self.log.info("正在查询可用CPU/NET资源")
+        url = self.rpc_host + "/v1/chain/get_account"
+        if user_param.cpu_account:
+            account_name = user_param.cpu_account
+        else:
+            account_name = self.wax_account
+        post_data = {"account_name": account_name}
+        resp = self.http.post(url, json = post_data)
+        if resp.status_code != 200:
+            raise NodeException("wax rpc error: {0}".format(resp.text), resp)
+        resp = resp.json()
+        cpu_available = resp["cpu_limit"]["available"]
+        net_available = resp["net_limit"]["available"]
+        self.log.info("CPU可用:{0}us NET可用:{1}bytes".format(cpu_available, net_available))
+        if cpu_available < 600 or net_available < 180:
+            return False
+        else:
+            return True
 
 
     def run(self):

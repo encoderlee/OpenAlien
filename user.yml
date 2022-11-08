@@ -9,9 +9,9 @@ rpc_domain: https://wax.greymass.com
 cpu_account:
 cpu_key:
 
-# 即使可挖时间到了，也延迟30-90秒再挖
-delay1: 30
-delay2: 90
+# 即使可挖时间到了，也延迟20-60秒再挖
+delay1: 20
+delay2: 60
 
 # http代理（比如127.0.0.1:10808)
 # 给脚本设置HTTP代理，这样可以在一定程度上解决公共节点限制访问的问题，不需要则留空

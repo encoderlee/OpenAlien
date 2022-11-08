@@ -1,5 +1,5 @@
 # OpenAlien
-![version](https://img.shields.io/badge/version-1.0.2-blue)
+![version](https://img.shields.io/badge/version-1.1-blue)
 ![license](https://img.shields.io/badge/license-MIT-brightgreen)
 ![python_version](https://img.shields.io/badge/python-%3E%3D%203.6-brightgreen)
 ![coverage](https://img.shields.io/badge/coverage-100%25-brightgreen)
@@ -150,3 +150,8 @@ wax钱包地址：
 
 m45yy.wam
 
+### 更新记录
+v1.1 (2022年11月8日)
+1. 优化logger，允许每个账号的日志输出到不同的文件
+2. 从代码中移除 eosapi 源文件，直接从 pip 下载该库
+3. 增加账户可用的CPU资源判断，如果CPU不足则不会冒然尝试提交交易，减少因频繁提交错误交易被节点拉黑的概率
