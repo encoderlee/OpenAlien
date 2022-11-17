@@ -6,6 +6,7 @@
 rpc_domain: https://wax.greymass.com
 
 # cpu代付号,cpu_key填写该代付号私钥，不需要代付则留空
+# 注意,由于外星世界官方于2022年10月更新了智能合约，阻止代付行为，所以代付功能失效
 cpu_account:
 cpu_key:
 
