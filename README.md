@@ -38,7 +38,7 @@
 
 直接点下面链接下载最新版打包版本（或在github页面右侧的【Releases】里找），打包版本只支持Win10或更高版本的操作系统。
 
-[【点我下载】](https://github.com/encoderlee/OpenAlien/releases/download/1.0.2/OpenAlien_1.0.2.zip)
+[【点我下载】](https://github.com/encoderlee/OpenAlien/releases/download/v1.1.2/OpenAlien_1.1.2.zip)
 
 把压缩包里的文件解压出来，先修改配置文件【user.yml】，再双击运行【user.bat】
 
