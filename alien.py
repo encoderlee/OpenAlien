@@ -1,6 +1,6 @@
 from datetime import datetime, timezone, timedelta
 import time
-import logger
+from bestlog import logger
 import logging
 import requests
 import functools
@@ -63,7 +63,7 @@ class Alien:
     def __init__(self, wax_account: str, token: str, charge_time: int, proxy: HttpProxy = None):
         self.wax_account: str = wax_account
         self.token: str = token
-        self.log: logging.LoggerAdapter = logger.get_loger(self.wax_account, self.wax_account)
+        self.log: logging.LoggerAdapter = logger.get(self.wax_account, self.wax_account)
         self.http = requests.Session()
         self.http.headers["User-Agent"] = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, " \
                                           "like Gecko) Chrome/101.0.4951.54 Safari/537.36 "
@@ -88,6 +88,7 @@ class Alien:
         self.next_mine_time: datetime = None
         self.check_cpu: bool = False
 
+        self.count_mine = 0
         self.trx_error_count = 0
 
     def wait_retry(self, retry_state: RetryCallState) -> float:
@@ -141,6 +142,33 @@ class Alien:
         }
         return self.eosapi.get_table_rows(post_data)
 
+        # 获取收益
+
+    def claim_mines(self):
+        self.log.info("正在获取收益")
+        trx = {
+            "actions": [{
+                "account": "m.federation",
+                "name": "claimmines",
+                "authorization": [{
+                    "actor": self.wax_account,
+                    "permission": "active",
+                }],
+                "data": {
+                    "receiver": self.wax_account,
+                },
+            }]
+        }
+        trx = self.eosapi.make_transaction(trx)
+        serialized_trx = list(trx.pack())
+
+        # wax云钱包签名
+        signatures = self.wax_sign(serialized_trx)
+        time.sleep(interval.req)
+        trx.signatures.extend(signatures)
+        self.push_transaction(trx)
+        return True
+
     # 采矿
     def mine(self) -> bool:
         if self.check_cpu:
@@ -189,6 +217,11 @@ class Alien:
         time.sleep(interval.req)
         trx.signatures.extend(signatures)
         self.push_transaction(trx)
+
+        self.count_mine += 1
+        if user_param.claimmines > 0 and self.count_mine % user_param.claimmines == 0:
+            time.sleep(1)
+            self.claim_mines()
 
         interval_seconds = self.charge_time + random.randint(user_param.delay1, user_param.delay2)
         self.next_mine_time = datetime.now() + timedelta(seconds=interval_seconds)

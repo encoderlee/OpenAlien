@@ -1,5 +1,5 @@
 # OpenAlien
-![version](https://img.shields.io/badge/version-1.1-blue)
+![version](https://img.shields.io/badge/version-1.1.2-blue)
 ![license](https://img.shields.io/badge/license-MIT-brightgreen)
 ![python_version](https://img.shields.io/badge/python-%3E%3D%203.6-brightgreen)
 ![coverage](https://img.shields.io/badge/coverage-100%25-brightgreen)
@@ -85,6 +85,9 @@ cpu_key:
 delay1: 20
 delay2: 60
 
+# 挖多少次获取一次收益,0为不自动获取
+claimmines: 10
+
 # http代理（比如127.0.0.1:10808)
 # 给脚本设置HTTP代理，这样可以在一定程度上解决公共节点限制访问的问题，不需要则留空
 proxy:
@@ -157,3 +160,8 @@ v1.1 (2022年11月8日)
 2. 从代码中移除 eosapi 源文件，直接从 pip 下载该库
 3. 增加账户可用的CPU资源判断，如果CPU不足则不会冒然尝试提交交易，减少因频繁提交错误交易被节点拉黑的概率
 4. 注意,由于外星世界官方于2022年10月更新了智能合约，阻止代付行为，所以代付功能失效
+
+v1.1.2 (2022年12月8日)
+1. 游戏玩法改变，挖矿不再即时获得收益，而是需要点击获取收益TLM才会到账
+2. 脚本更新，支持每挖N次，自动获取一次收益
+3. 移除logger.py，直接从 pip 下载该库

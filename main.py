@@ -1,4 +1,4 @@
-import logger
+from bestlog import logger
 import ruamel.yaml
 yaml = ruamel.yaml.YAML()
 from ruamel.yaml.comments import CommentedMap
@@ -17,8 +17,8 @@ def start():
         file.close()
     load_param(data)
 
-    logger.init_loger(user_param.account)
-    log = logger.get_loger(user_param.account)
+    logger.init(user_param.account, tag = True)
+    log = logger.get(user_param.account)
 
     proxy = None
     if user_param.proxy:
@@ -33,7 +33,7 @@ def start():
 
 
 def main():
-    print(">>>>>>>>>>>>> OpenAlien 开源版:v1.1 <<<<<<<<<<<<")
+    print(">>>>>>>>>>>>> OpenAlien 开源版:v1.1.2 <<<<<<<<<<<<")
     print(">>>>>>>>>>>>> 交流QQ群:568229631 <<<<<<<<<<<<")
     print(">>>>>>>>>>>>> 项目地址:https://github.com/encoderlee/OpenAlien <<<<<<<<<<<<\n")
     try:

@@ -14,6 +14,9 @@ cpu_key:
 delay1: 20
 delay2: 60
 
+# 挖多少次获取一次收益,0为不自动获取
+claimmines: 10
+
 # http代理（比如127.0.0.1:10808)
 # 给脚本设置HTTP代理，这样可以在一定程度上解决公共节点限制访问的问题，不需要则留空
 proxy:
@@ -28,5 +31,5 @@ proxy_password:
 # charge_time是采矿间隔，单位秒，登录alienworlds官网，打开工具页面，就可以看到，按实际情况填写
 
 account: gts3c.c.wam
-token: EHuyFHPcLpSNUJ4BLSUnPkxxxxxxxxxxxxxxxx
-charge_time: 336
+token: 9Ejaq6Q06vaxxxxxxxxxxxxxxxxxxxxx
+charge_time: 480

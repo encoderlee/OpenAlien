@@ -17,6 +17,7 @@ class UserParam:
     cpu_key: Optional[str] = None
     delay1: int = 30
     delay2: int = 90
+    claimmines: int = 10
 
     proxy: Optional[str] = None
     proxy_username: Optional[str] = None

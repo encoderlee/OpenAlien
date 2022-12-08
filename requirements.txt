@@ -5,3 +5,4 @@ dacite
 base58
 eosapi
 ruamel.yaml
+bestlog
